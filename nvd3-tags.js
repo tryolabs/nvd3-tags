@@ -85,7 +85,9 @@ function customizeChart(chart, options) {
                 return item[0];
             }
         })
-        .y(function(item) { return item[1] });
+        .y(function(item) {
+            return item[1]
+        });
 }
 
 /* Render a chart.
