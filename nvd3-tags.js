@@ -9,17 +9,17 @@ function isDefined(obj) {
 function extractData(nodes) {
     var separated = nodes.text().split('\n');
     var cleaned = $.map(
-        $.grep(separated,function(str) {
+        $.grep(separated, function(str) {
             return str.trim() != "";
         }),
         function(str) {
             return str.trim();
         }
     );
-    var pairs = $.map(cleaned,function(str) {
-            return [str.split(',')];
+    var pairs = $.map(cleaned, function(str) {
+        return [str.split(',')];
     });
-    return $.grep(pairs,function(pair) {
+    return $.grep(pairs, function(pair) {
         return isDefined(pair);
     });
 }
@@ -31,7 +31,7 @@ function strToBool(str) {
 }
 
 function processData(data) {
-    return $.map(data,function(row) {
+    return $.map(data, function(row) {
         return [$.map(row, function(item) {
             return !isNaN(item) ? parseFloat(item) : item;
         })];
@@ -95,8 +95,7 @@ function renderChart(chart, data, id, options) {
       chart = customizeChart(chart, options);
 
       selector = d3.select('chart[nvd3_id="'+id+'"] svg')
-          .datum(data).
-          transition().duration(500);
+          .datum(data).transition().duration(500);
 
       if(isDefined(options.width)) {
           selector = selector.attr('width', options.width);
@@ -132,7 +131,7 @@ function multiSeriesData(data) {
  */
 function renderAll() {
     $("chart").each(function(index) {
-        $(this).attr('nvd3_id',index.toString());
+        $(this).attr('nvd3_id', index.toString());
         $(this).append('<svg></svg>');
         var data = processData(extractData($(this).children("data")));
         var options = {
