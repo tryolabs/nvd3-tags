@@ -1,4 +1,6 @@
-function def(obj) { return obj != undefined; }
+function isDefined(obj) {
+    return obj != undefined;
+}
 
 function extractData(nodes) {
     var separated = nodes.text().split('\n');
@@ -14,7 +16,7 @@ function extractData(nodes) {
             return [str.split(',')];
     });
     return $.grep(pairs,function(pair) {
-        return def(pair);
+        return isDefined(pair);
     });
 }
 
@@ -31,16 +33,16 @@ function processData(data) {
 }
 
 function customizeChart(chart, options) {
-    if(def(options.width)) {
+    if(isDefined(options.width)) {
         chart = chart.width(parseInt(options.width));
     }
-    if(def(options.height)) {
+    if(isDefined(options.height)) {
         chart = chart.height(parseInt(options.height));
     }
-    if(def(options.tooltips)) {
+    if(isDefined(options.tooltips)) {
         chart = chart.tooltips(strToBool(options.tooltips));
     }
-    if(def(options.legend)) {
+    if(isDefined(options.legend)) {
         chart = chart.showLegend(strToBool(options.legend));
     }
 
@@ -62,7 +64,7 @@ function customizeChart(chart, options) {
             });
     }
 
-    if(def(options.clip)) {
+    if(isDefined(options.clip)) {
         chart = chart.clipEdge(true);
     }
     return chart
@@ -86,10 +88,10 @@ function renderChart(chart, data, id, options) {
           .datum(data).
           transition().duration(500);
 
-      if(def(options.width)) {
+      if(isDefined(options.width)) {
           selector = selector.attr('width', options.width);
       }
-      if(def(options.height)) {
+      if(isDefined(options.height)) {
           selector = selector.attr('height', options.height);
       }
       selector = selector.call(chart);
