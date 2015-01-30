@@ -38,6 +38,8 @@ function processData(data) {
     });
 }
 
+/** Apply options to a chart.
+ */
 function customizeChart(chart, options) {
     if(isDefined(options.width)) {
         chart = chart.width(parseInt(options.width));
@@ -86,6 +88,8 @@ function customizeChart(chart, options) {
         .y(function(item) { return item[1] });
 }
 
+/* Render a chart.
+ */
 function renderChart(chart, data, id, options) {
   nv.addGraph(function() {
       chart = customizeChart(chart, options);
@@ -108,6 +112,8 @@ function renderChart(chart, data, id, options) {
   });
 }
 
+/** Process multi-series data into something NVD3 likes.
+ */
 function multiSeriesData(data) {
     var labels = data[0].slice(1);
     var values = data.slice(1);
@@ -122,7 +128,8 @@ function multiSeriesData(data) {
     return output;
 }
 
-
+/** Render all charts on a page.
+ */
 function renderAll() {
     $("chart").each(function(index) {
         $(this).attr('nvd3_id',index.toString());
