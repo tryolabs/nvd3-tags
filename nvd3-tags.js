@@ -1,7 +1,11 @@
+/** Test whether an object is not undefined.
+ */
 function isDefined(obj) {
     return obj != undefined;
 }
 
+/** Extract data from CSV.
+ */
 function extractData(nodes) {
     var separated = nodes.text().split('\n');
     var cleaned = $.map(
@@ -20,6 +24,8 @@ function extractData(nodes) {
     });
 }
 
+/** Convert 'true' to true and everything else to false.
+ */
 function strToBool(str) {
     return str === 'true' ? true : false
 }
