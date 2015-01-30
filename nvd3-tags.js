@@ -166,11 +166,6 @@ function renderAll() {
                         multiSeriesData(data),
                         index,
                         options);
-        } else if (options.type == 'bar') {
-            renderChart(nv.models.discreteBarChart(),
-                        [{ 'key': 'Derp', 'values': data }],
-                        index,
-                        options);
         }
     });
 }
