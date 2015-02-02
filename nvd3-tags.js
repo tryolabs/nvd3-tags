@@ -97,6 +97,9 @@ function renderChart(chart_node, id) {
     chart_node.attr('nvd3_id', id.toString());
     chart_node.append('<svg></svg>');
 
+    /* Hide the data */
+    $(chart_node).find('data').hide();
+
     /* Extract the data and the options */
 
     var data = processData(extractData(chart_node.children("data")));
