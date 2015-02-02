@@ -93,27 +93,27 @@ function customizeChart(chart, options) {
 /* Render a chart.
  */
 function renderChart(chart_node, chart, data, id, options) {
-  chart_node.attr('nvd3_id', id.toString());
-  chart_node.append('<svg></svg>');
+    chart_node.attr('nvd3_id', id.toString());
+    chart_node.append('<svg></svg>');
 
-  nv.addGraph(function() {
-      chart = customizeChart(chart, options);
+    nv.addGraph(function() {
+        chart = customizeChart(chart, options);
 
-      selector = d3.select('chart[nvd3_id="'+id+'"] svg')
-          .datum(data).transition().duration(500);
+        selector = d3.select('chart[nvd3_id="'+id+'"] svg')
+            .datum(data).transition().duration(500);
 
-      if(isDefined(options.width)) {
-          selector = selector.attr('width', options.width);
-      }
-      if(isDefined(options.height)) {
-          selector = selector.attr('height', options.height);
-      }
-      selector = selector.call(chart);
+        if(isDefined(options.width)) {
+            selector = selector.attr('width', options.width);
+        }
+        if(isDefined(options.height)) {
+            selector = selector.attr('height', options.height);
+        }
+        selector = selector.call(chart);
 
-      nv.utils.windowResize(chart.update);
+        nv.utils.windowResize(chart.update);
 
-      return chart;
-  });
+        return chart;
+    });
 }
 
 /** Process multi-series data into something NVD3 likes.
