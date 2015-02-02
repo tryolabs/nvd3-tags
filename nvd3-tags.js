@@ -138,6 +138,8 @@ function renderChart(chart_node, id) {
         console.log("Unknown chart type.");
     }
 
+    /* Render the chart */
+
     if(chart_model) {
         nv.addGraph(function() {
             var plot = customizeChart(chart_model, options);
