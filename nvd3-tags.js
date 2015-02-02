@@ -1,3 +1,7 @@
+/* Constants */
+
+NVD3_ID_ATTR_NAME = 'nvd3_id';
+
 /* Utilities */
 
 /** Test whether an object is not undefined.
@@ -116,7 +120,7 @@ function customizeChart(chart, options) {
 /* Render a chart.
  */
 function renderChart(chart_node, id) {
-    chart_node.attr('nvd3_id', id.toString());
+    chart_node.attr(NVD3_ID_ATTR_NAME, id.toString());
     chart_node.append('<svg></svg>');
 
     /* Hide the data */
@@ -166,7 +170,7 @@ function renderChart(chart_node, id) {
         nv.addGraph(function() {
             var plot = customizeChart(chart_model, options);
 
-            selector = d3.select('chart[nvd3_id="'+id+'"] svg')
+            selector = d3.select('chart[' + NVD3_ID_ATTR_NAME + '="'+id+'"] svg')
                 .datum(data).transition().duration(500);
 
             if(isDefined(options.width)) {
