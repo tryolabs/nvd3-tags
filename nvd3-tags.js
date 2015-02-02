@@ -93,6 +93,9 @@ function customizeChart(chart, options) {
 /* Render a chart.
  */
 function renderChart(chart_node, chart, data, id, options) {
+  chart_node.attr('nvd3_id', id.toString());
+  chart_node.append('<svg></svg>');
+
   nv.addGraph(function() {
       chart = customizeChart(chart, options);
 
@@ -133,8 +136,6 @@ function multiSeriesData(data) {
  */
 function renderAll() {
     $("chart").each(function(index) {
-        $(this).attr('nvd3_id', index.toString());
-        $(this).append('<svg></svg>');
         var data = processData(extractData($(this).children("data")));
         var options = {
             'type': $(this).attr('type'),
