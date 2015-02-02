@@ -75,6 +75,7 @@ function customizeChart(chart, options) {
     if(isDefined(options.clip)) {
         chart = chart.clipEdge(true);
     }
+
     return chart
         .x(function(item) {
             if(options.x_date_format) {
@@ -86,34 +87,74 @@ function customizeChart(chart, options) {
             }
         })
         .y(function(item) {
-            return item[1]
+            return item[1];
         });
 }
 
 /* Render a chart.
  */
-function renderChart(chart_node, chart, data, id, options) {
+function renderChart(chart_node, id) {
     chart_node.attr('nvd3_id', id.toString());
     chart_node.append('<svg></svg>');
 
-    nv.addGraph(function() {
-        chart = customizeChart(chart, options);
+    /* Extract the data and the options */
 
-        selector = d3.select('chart[nvd3_id="'+id+'"] svg')
-            .datum(data).transition().duration(500);
+    var data = processData(extractData(chart_node.children("data")));
+    var options = {
+        'type': chart_node.attr('type'),
+        'title': chart_node.attr('title') || "Untitled",
+        'width': chart_node.attr('width'),
+        'height': chart_node.attr('height'),
+        'x_start': chart_node.attr('x-start'),
+        'x_end': chart_node.attr('x-end'),
+        'x_format': chart_node.attr('x-format'),
+        'x_date_format': chart_node.attr('x-date-format'),
+        'y_start': chart_node.attr('y-start'),
+        'y_end': chart_node.attr('y-end'),
+        'y_format': chart_node.attr('y-format'),
+        'y_date_format': chart_node.attr('y-date-format'),
+        'tooltips': chart_node.attr('tooltips'),
+        'legend': chart_node.attr('legend'),
+        'clip': chart_node.attr('clip')
+    }
 
-        if(isDefined(options.width)) {
-            selector = selector.attr('width', options.width);
-        }
-        if(isDefined(options.height)) {
-            selector = selector.attr('height', options.height);
-        }
-        selector = selector.call(chart);
+    /* Decide what kind of chart we want to render, and in some cases manipulate
+     * data to fit better */
 
-        nv.utils.windowResize(chart.update);
+    var chart_model;
 
-        return chart;
-    });
+    if (options.type == 'line') {
+        chart_model = nv.models.lineChart();
+        data = multiSeriesData(data);
+    } else if (options.type == 'pie') {
+        chart_model = nv.models.pieChart();
+    } else if (options.type == 'stacked') {
+        chart_model = nv.models.stackedAreaChart();
+        data = multiSeriesData(data);
+    } else {
+        console.log("Unknown chart type.");
+    }
+
+    if(chart_model) {
+        nv.addGraph(function() {
+            var plot = customizeChart(chart_model, options);
+
+            selector = d3.select('chart[nvd3_id="'+id+'"] svg')
+                .datum(data).transition().duration(500);
+
+            if(isDefined(options.width)) {
+                selector = selector.attr('width', options.width);
+            }
+            if(isDefined(options.height)) {
+                selector = selector.attr('height', options.height);
+            }
+            selector = selector.call(plot);
+
+            nv.utils.windowResize(plot.update);
+
+            return plot;
+        });
+    }
 }
 
 /** Process multi-series data into something NVD3 likes.
@@ -136,42 +177,6 @@ function multiSeriesData(data) {
  */
 function renderAll() {
     $("chart").each(function(index) {
-        var data = processData(extractData($(this).children("data")));
-        var options = {
-            'type': $(this).attr('type'),
-            'title': $(this).attr('title') || "Untitled",
-            'width': $(this).attr('width'),
-            'height': $(this).attr('height'),
-            'x_start': $(this).attr('x-start'),
-            'x_end': $(this).attr('x-end'),
-            'x_format': $(this).attr('x-format'),
-            'x_date_format': $(this).attr('x-date-format'),
-            'y_start': $(this).attr('y-start'),
-            'y_end': $(this).attr('y-end'),
-            'y_format': $(this).attr('y-format'),
-            'y_date_format': $(this).attr('y-date-format'),
-            'tooltips': $(this).attr('tooltips'),
-            'legend': $(this).attr('legend'),
-            'clip': $(this).attr('clip')
-        }
-        if (options.type == 'line') {
-            renderChart($(this),
-                        nv.models.lineChart(),
-                        multiSeriesData(data),
-                        index,
-                        options);
-        } else if (options.type == 'pie') {
-            renderChart($(this),
-                        nv.models.pieChart(),
-                        data,
-                        index,
-                        options);
-        } else if (options.type == 'stacked') {
-            renderChart($(this),
-                        nv.models.stackedAreaChart(),
-                        multiSeriesData(data),
-                        index,
-                        options);
-        }
+        renderChart($(this), index);
     });
 }
