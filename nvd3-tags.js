@@ -92,7 +92,7 @@ function customizeChart(chart, options) {
 
 /* Render a chart.
  */
-function renderChart(chart, data, id, options) {
+function renderChart(chart_node, chart, data, id, options) {
   nv.addGraph(function() {
       chart = customizeChart(chart, options);
 
@@ -154,17 +154,20 @@ function renderAll() {
             'clip': $(this).attr('clip')
         }
         if (options.type == 'line') {
-            renderChart(nv.models.lineChart(),
+            renderChart($(this),
+                        nv.models.lineChart(),
                         multiSeriesData(data),
                         index,
                         options);
         } else if (options.type == 'pie') {
-            renderChart(nv.models.pieChart(),
+            renderChart($(this),
+                        nv.models.pieChart(),
                         data,
                         index,
                         options);
         } else if (options.type == 'stacked') {
-            renderChart(nv.models.stackedAreaChart(),
+            renderChart($(this),
+                        nv.models.stackedAreaChart(),
                         multiSeriesData(data),
                         index,
                         options);
