@@ -1,8 +1,18 @@
+/* Utilities */
+
 /** Test whether an object is not undefined.
  */
 function isDefined(obj) {
     return obj != undefined;
 }
+
+/** Convert 'true' to true and everything else to false.
+ */
+function strToBool(str) {
+    return str === 'true' ? true : false
+}
+
+/* Data processing */
 
 /** Extract data from CSV.
  */
@@ -24,12 +34,6 @@ function extractData(nodes) {
     });
 }
 
-/** Convert 'true' to true and everything else to false.
- */
-function strToBool(str) {
-    return str === 'true' ? true : false
-}
-
 function processData(data) {
     return $.map(data, function(row) {
         return [$.map(row, function(item) {
@@ -37,6 +41,24 @@ function processData(data) {
         })];
     });
 }
+
+/** Process multi-series data into something NVD3 likes.
+ */
+function multiSeriesData(data) {
+    var labels = data[0].slice(1);
+    var values = data.slice(1);
+    var output = $.map(labels, function(label,index) {
+        return {
+            'key': label,
+            'values': $.map(values, function(row, pos) {
+                return [[row[0],row[index+1]]];
+            })
+        };
+    });
+    return output;
+}
+
+/* Chart rendering */
 
 /** Apply options to a chart.
  */
@@ -160,22 +182,6 @@ function renderChart(chart_node, id) {
             return plot;
         });
     }
-}
-
-/** Process multi-series data into something NVD3 likes.
- */
-function multiSeriesData(data) {
-    var labels = data[0].slice(1);
-    var values = data.slice(1);
-    var output = $.map(labels, function(label,index) {
-        return {
-            'key': label,
-            'values': $.map(values, function(row, pos) {
-                return [[row[0],row[index+1]]];
-            })
-        };
-    });
-    return output;
 }
 
 /** Render all charts on a page.
