@@ -38,6 +38,8 @@ function extractData(nodes) {
     });
 }
 
+/** Process CSV data.
+ */
 function processData(data) {
     return $.map(data, function(row) {
         return [$.map(row, function(item) {
@@ -117,7 +119,7 @@ function customizeChart(chart, options) {
         });
 }
 
-/* Render a chart.
+/** Render a chart.
  */
 function renderChart(chart_node, id) {
     chart_node.attr(NVD3_ID_ATTR_NAME, id.toString());
