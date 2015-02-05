@@ -162,6 +162,9 @@ function renderChart(chart_node, id) {
     } else if (options.type == 'stacked') {
         chart_model = nv.models.stackedAreaChart();
         data = multiSeriesData(data);
+    } else if (options.type == 'bar') {
+        chart_model = nv.models.discreteBarChart();
+        data = multiSeriesData(data);
     } else {
         console.log("Unknown chart type.");
     }
