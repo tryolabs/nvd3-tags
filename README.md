@@ -6,23 +6,17 @@ A library for creating NVD3 charts from CSV data.
 
 * `type`: The type of chart. Options: `line`, `pie`, `stacked`, `bar`.
 
-* `title`
+* `title`: The chart's title text.
 
-* `width`
+* `width`, `height`: The chart's dimensions.
 
-* `height`
-
-* `x_start`
-
-* `x_end`
+* `x_start`, `x_end`: The range of the X axis.
 
 * `x_format`
 
 * `x_date_format`
 
-* `y_start`
-
-* `y_end`
+* `y_start`, `y_end`: The range of the Y axis.
 
 * `y_format`
 
