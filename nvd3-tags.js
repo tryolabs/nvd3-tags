@@ -3,7 +3,6 @@
 const NVD3_ID_ATTR_NAME = 'nvd3_id';
 
 const CHART_TYPE = 'type';
-const CHART_TITLE = 'title';
 const CHART_WIDTH = 'width';
 const CHART_HEIGHT = 'height';
 
@@ -153,7 +152,6 @@ function renderChart(chart_node, id) {
     var options = {};
 
     options[CHART_TYPE] = chart_node.attr(CHART_TYPE);
-    options[CHART_TITLE] = chart_node.attr(CHART_TITLE) || "Untitled";
     options[CHART_WIDTH] = chart_node.attr(CHART_WIDTH);
     options[CHART_HEIGHT] = chart_node.attr(CHART_HEIGHT);
     options[CHART_X_START] = chart_node.attr(CHART_X_START);
