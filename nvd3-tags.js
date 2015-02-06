@@ -121,6 +121,19 @@ function customizeChart(chart, options) {
         });
     }
 
+    /* Customize axis ranges */
+    const x_start = options[CHART_X_START];
+    const x_end = options[CHART_X_END];
+    if(isDefined(x_start) & isDefined(x_end)) {
+        chart.forceX(parseFloat(x_start), parseFloat(x_end));
+    }
+
+    const y_start = options[CHART_Y_START];
+    const y_end = options[CHART_Y_END];
+    if(isDefined(y_start) & isDefined(y_end)) {
+        chart.forceY(parseFloat(y_start), parseFloat(y_end));
+    }
+
     /* Add the functions that extract data into the axes */
     return chart
         .x(function(item) {
