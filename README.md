@@ -12,15 +12,15 @@ A library for creating NVD3 charts from CSV data.
 
 * `x_start`, `x_end`: The range of the X axis.
 
-* `x_format`
+* `x_format`: The numerical format of the X axis.
 
-* `x_date_format`
+* `x_date_format`: The date format of the X axis.
 
 * `y_start`, `y_end`: The range of the Y axis.
 
-* `y_format`
+* `y_format`: The numerical format of the Y axis.
 
-* `y_date_format`
+* `y_date_format`: The date format of the Y axis.
 
 * `tooltips`: Whether or not to show tooltips when mousing over the data. `true`
   or `false.`
