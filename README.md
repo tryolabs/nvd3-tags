@@ -25,6 +25,6 @@ A library for creating NVD3 charts from CSV data.
 * `tooltips`: Whether or not to show tooltips when mousing over the data. `true`
   or `false.`
 
-* `legend`
+* `legend`: Show legends.
 
-* `clip`
+* `clip`: Clip the edges when the chart runs over the width and height limits.
