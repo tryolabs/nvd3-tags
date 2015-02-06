@@ -6,15 +6,15 @@ const CHART_TYPE = 'type';
 const CHART_WIDTH = 'width';
 const CHART_HEIGHT = 'height';
 
-const CHART_X_START = 'x_start';
-const CHART_X_END = 'x_end';
-const CHART_X_FORMAT = 'x_format';
-const CHART_X_DATE_FORMAT = 'x_date_format';
+const CHART_X_START = 'x-start';
+const CHART_X_END = 'x-end';
+const CHART_X_FORMAT = 'x-format';
+const CHART_X_DATE_FORMAT = 'x-date-format';
 
-const CHART_Y_START = 'y_start';
-const CHART_Y_END = 'y_end';
-const CHART_Y_FORMAT = 'y_format';
-const CHART_Y_DATE_FORMAT = 'y_date_format';
+const CHART_Y_START = 'y-start';
+const CHART_Y_END = 'y-end';
+const CHART_Y_FORMAT = 'y-format';
+const CHART_Y_DATE_FORMAT = 'y-date-format';
 
 const CHART_TOOLTIPS = 'tooltips';
 const CHART_LEGEND = 'legend';
