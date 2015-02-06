@@ -144,7 +144,7 @@ function renderChart(chart_node, id) {
         'y_end': chart_node.attr('y-end'),
         'y_format': chart_node.attr('y-format'),
         'y_date_format': chart_node.attr('y-date-format'),
-        'tooltips': chart_node.attr('tooltips'),
+        'tooltips': chart_node.attr('tooltips') || "false",
         'legend': chart_node.attr('legend'),
         'clip': chart_node.attr('clip')
     }
