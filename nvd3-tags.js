@@ -106,28 +106,28 @@ function customizeChart(chart, options) {
     }
 
     /* Customize the axes */
-    if(options.x_format) {
-        chart.xAxis.tickFormat(d3.format(options.x_format));
-    } else if(options.x_date_format) {
+    if(options[CHART_X_FORMAT]) {
+        chart.xAxis.tickFormat(d3.format(options[CHART_X_FORMAT]));
+    } else if(options[CHART_X_DATE_FORMAT]) {
         chart.xAxis
             .tickFormat(function(x) {
-                return d3.time.format(options.x_date_format)(new Date(x))
+                return d3.time.format(options[CHART_X_DATE_FORMAT])(new Date(x));
             });
     }
 
-    if(options.y_format) {
-        chart.yAxis.tickFormat(d3.format(options.y_format));
-    } else if(options.y_date_format) {
+    if(options[CHART_Y_FORMAT]) {
+        chart.yAxis.tickFormat(d3.format(options[CHART_Y_FORMAT]));
+    } else if(options[CHART_Y_DATE_FORMAT]) {
         chart.yAxis
             .tickFormat(function(y) {
-                return d3.time.format(options.y_date_format)(new Date(y))
+                return d3.time.format(options[CHART_Y_DATE_FORMAT])(new Date(y));
             });
     }
 
     /* Add the functions that extract data into the axes */
     return chart
         .x(function(item) {
-            if(options.x_date_format) {
+            if(options[CHART_X_DATE_FORMAT]) {
                 // If the values of the x axis are Unix timestamps, we have to
                 // modify them slightly for them to work
                 return parseInt(item[0].toString() + '000');
