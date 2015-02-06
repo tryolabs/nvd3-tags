@@ -94,12 +94,12 @@ function customizeChart(chart, options) {
     if(isDefined(options.height)) {
         chart = chart.height(parseInt(options.height));
     }
-    if(isDefined(options.tooltips)) {
-        chart = chart.tooltips(strToBool(options.tooltips));
-    }
+
     if(isDefined(options.legend)) {
         chart = chart.showLegend(strToBool(options.legend));
     }
+
+    chart = chart.tooltips(strToBool(options.tooltips));
 
     if(options.x_format) {
         chart.xAxis.tickFormat(d3.format(options.x_format));
