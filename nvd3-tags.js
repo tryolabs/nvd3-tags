@@ -1,6 +1,25 @@
 /* Constants */
 
-NVD3_ID_ATTR_NAME = 'nvd3_id';
+const NVD3_ID_ATTR_NAME = 'nvd3_id';
+
+const CHART_TYPE = 'type';
+const CHART_TITLE = 'title';
+const CHART_WIDTH = 'width';
+const CHART_HEIGHT = 'height';
+
+const CHART_X_START = 'x_start';
+const CHART_X_END = 'x_end';
+const CHART_X_FORMAT = 'x_format';
+const CHART_X_DATE_FORMAT = 'x_date_format';
+
+const CHART_Y_START = 'y_start';
+const CHART_Y_END = 'y_end';
+const CHART_Y_FORMAT = 'y_format';
+const CHART_Y_DATE_FORMAT = 'y_date_format';
+
+const CHART_TOOLTIPS = 'tooltips';
+const CHART_LEGEND = 'legend';
+const CHART_CLIP = 'clip';
 
 /* Utilities */
 
@@ -130,24 +149,24 @@ function renderChart(chart_node, id) {
 
     /* Extract the data and the options */
 
-    var data = processData(extractData(chart_node.children("data")));
-    var options = {
-        'type': chart_node.attr('type'),
-        'title': chart_node.attr('title') || "Untitled",
-        'width': chart_node.attr('width'),
-        'height': chart_node.attr('height'),
-        'x_start': chart_node.attr('x-start'),
-        'x_end': chart_node.attr('x-end'),
-        'x_format': chart_node.attr('x-format'),
-        'x_date_format': chart_node.attr('x-date-format'),
-        'y_start': chart_node.attr('y-start'),
-        'y_end': chart_node.attr('y-end'),
-        'y_format': chart_node.attr('y-format'),
-        'y_date_format': chart_node.attr('y-date-format'),
-        'tooltips': chart_node.attr('tooltips') || "false",
-        'legend': chart_node.attr('legend'),
-        'clip': chart_node.attr('clip')
-    }
+    var data = processData(extractData(chart_node.children('data')));
+    var options = {};
+
+    options[CHART_TYPE] = chart_node.attr(CHART_TYPE);
+    options[CHART_TITLE] = chart_node.attr(CHART_TITLE) || "Untitled";
+    options[CHART_WIDTH] = chart_node.attr(CHART_WIDTH);
+    options[CHART_HEIGHT] = chart_node.attr(CHART_HEIGHT);
+    options[CHART_X_START] = chart_node.attr(CHART_X_START);
+    options[CHART_X_END] = chart_node.attr(CHART_X_END);
+    options[CHART_X_FORMAT] = chart_node.attr(CHART_X_FORMAT);
+    options[CHART_X_DATE_FORMAT] = chart_node.attr(CHART_X_DATE_FORMAT);
+    options[CHART_Y_START] = chart_node.attr(CHART_Y_START);
+    options[CHART_Y_END] = chart_node.attr(CHART_Y_END);
+    options[CHART_Y_FORMAT] = chart_node.attr(CHART_Y_FORMAT);
+    options[CHART_Y_DATE_FORMAT] = chart_node.attr(CHART_Y_DATE_FORMAT);
+    options[CHART_TOOLTIPS] = chart_node.attr(CHART_TOOLTIPS) || "false";
+    options[CHART_LEGEND] = chart_node.attr(CHART_LEGEND);
+    options[CHART_CLIP] = chart_node.attr(CHART_CLIP);
 
     /* Decide what kind of chart we want to render, and in some cases manipulate
      * data to fit better */
