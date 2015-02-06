@@ -22,7 +22,8 @@ A library for creating NVD3 charts from CSV data.
 
 * `y_date_format`
 
-* `tooltips`
+* `tooltips`: Whether or not to show tooltips when mousing over the data. `true`
+  or `false.`
 
 * `legend`
 
