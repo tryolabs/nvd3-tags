@@ -109,19 +109,17 @@ function customizeChart(chart, options) {
     if(options[CHART_X_FORMAT]) {
         chart.xAxis.tickFormat(d3.format(options[CHART_X_FORMAT]));
     } else if(options[CHART_X_DATE_FORMAT]) {
-        chart.xAxis
-            .tickFormat(function(x) {
-                return d3.time.format(options[CHART_X_DATE_FORMAT])(new Date(x));
-            });
+        chart.xAxis.tickFormat(function(x) {
+            return d3.time.format(options[CHART_X_DATE_FORMAT])(new Date(x));
+        });
     }
 
     if(options[CHART_Y_FORMAT]) {
         chart.yAxis.tickFormat(d3.format(options[CHART_Y_FORMAT]));
     } else if(options[CHART_Y_DATE_FORMAT]) {
-        chart.yAxis
-            .tickFormat(function(y) {
-                return d3.time.format(options[CHART_Y_DATE_FORMAT])(new Date(y));
-            });
+        chart.yAxis.tickFormat(function(y) {
+            return d3.time.format(options[CHART_Y_DATE_FORMAT])(new Date(y));
+        });
     }
 
     /* Add the functions that extract data into the axes */
