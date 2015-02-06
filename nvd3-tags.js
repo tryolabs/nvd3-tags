@@ -88,19 +88,24 @@ function multiSeriesData(data) {
 /** Apply options to a chart.
  */
 function customizeChart(chart, options) {
-    if(isDefined(options.width)) {
-        chart = chart.width(parseInt(options.width));
+    /* Set the dimensions of the chart */
+    if(isDefined(options[CHART_WIDTH])) {
+        chart = chart.width(parseInt(options[CHART_WIDTH]));
     }
-    if(isDefined(options.height)) {
-        chart = chart.height(parseInt(options.height));
-    }
-
-    if(isDefined(options.legend)) {
-        chart = chart.showLegend(strToBool(options.legend));
+    if(isDefined(options[CHART_HEIGHT])) {
+        chart = chart.height(parseInt(options[CHART_HEIGHT]));
     }
 
-    chart = chart.tooltips(strToBool(options.tooltips));
+    /* Apply other general chart options */
+    chart = chart.tooltips(strToBool(options[CHART_TOOLTIPS]));
+    if(isDefined(options[CHART_LEGEND])) {
+        chart = chart.showLegend(strToBool(options[CHART_LEGEND]));
+    }
+    if(isDefined(options[CHART_CLIP])) {
+        chart = chart.clipEdge(strToBool(options[CHART_CLIP]));
+    }
 
+    /* Customize the axes */
     if(options.x_format) {
         chart.xAxis.tickFormat(d3.format(options.x_format));
     } else if(options.x_date_format) {
@@ -119,10 +124,7 @@ function customizeChart(chart, options) {
             });
     }
 
-    if(isDefined(options.clip)) {
-        chart = chart.clipEdge(true);
-    }
-
+    /* Add the functions that extract data into the axes */
     return chart
         .x(function(item) {
             if(options.x_date_format) {
@@ -173,15 +175,16 @@ function renderChart(chart_node, id) {
 
     var chart_model;
 
-    if (options.type == 'line') {
+    const type = options[CHART_TYPE];
+    if(type == 'line') {
         chart_model = nv.models.lineChart();
         data = multiSeriesData(data);
-    } else if (options.type == 'pie') {
+    } else if(type == 'pie') {
         chart_model = nv.models.pieChart();
-    } else if (options.type == 'stacked') {
+    } else if(type == 'stacked') {
         chart_model = nv.models.stackedAreaChart();
         data = multiSeriesData(data);
-    } else if (options.type == 'bar') {
+    } else if(type == 'bar') {
         chart_model = nv.models.discreteBarChart();
         data = multiSeriesData(data);
     } else {
@@ -197,11 +200,11 @@ function renderChart(chart_node, id) {
             selector = d3.select('chart[' + NVD3_ID_ATTR_NAME + '="'+id+'"] svg')
                 .datum(data).transition().duration(500);
 
-            if(isDefined(options.width)) {
-                selector = selector.attr('width', options.width);
+            if(isDefined(options[CHART_WIDTH])) {
+                selector = selector.attr(CHART_WIDTH, options[CHART_WIDTH]);
             }
-            if(isDefined(options.height)) {
-                selector = selector.attr('height', options.height);
+            if(isDefined(options[CHART_HEIGHT])) {
+                selector = selector.attr(CHART_HEIGHT, options[CHART_HEIGHT]);
             }
             selector = selector.call(plot);
 
