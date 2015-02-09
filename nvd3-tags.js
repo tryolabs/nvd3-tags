@@ -2,23 +2,25 @@
 
 const NVD3_ID_ATTR_NAME = 'nvd3_id';
 
-const CHART_TYPE = 'type';
-const CHART_WIDTH = 'width';
-const CHART_HEIGHT = 'height';
+const option_attributes = {
+    type: 'type',
+    width: 'width',
+    height: 'height',
 
-const CHART_X_START = 'x-start';
-const CHART_X_END = 'x-end';
-const CHART_X_FORMAT = 'x-format';
-const CHART_X_DATE_FORMAT = 'x-date-format';
+    x_start: 'x-start',
+    x_end: 'x-end',
+    x_format: 'x-format',
+    x_date_format: 'x-date-format',
 
-const CHART_Y_START = 'y-start';
-const CHART_Y_END = 'y-end';
-const CHART_Y_FORMAT = 'y-format';
-const CHART_Y_DATE_FORMAT = 'y-date-format';
+    y_start: 'y-start',
+    y_end: 'y-end',
+    y_format: 'y-format',
+    y_date_format: 'y-date-format',
 
-const CHART_TOOLTIPS = 'tooltips';
-const CHART_LEGEND = 'legend';
-const CHART_CLIP = 'clip';
+    tooltips: 'tooltips',
+    legend: 'legend',
+    clip: 'clip'
+};
 
 /* Utilities */
 
@@ -88,48 +90,48 @@ function multiSeriesData(data) {
  */
 function customizeChart(chart, options) {
     /* Set the dimensions of the chart */
-    if(isDefined(options[CHART_WIDTH])) {
-        chart = chart.width(parseInt(options[CHART_WIDTH]));
+    if(isDefined(options.width)) {
+        chart = chart.width(parseInt(options.width));
     }
-    if(isDefined(options[CHART_HEIGHT])) {
-        chart = chart.height(parseInt(options[CHART_HEIGHT]));
+    if(isDefined(options.height)) {
+        chart = chart.height(parseInt(options.height));
     }
 
     /* Apply other general chart options */
-    chart = chart.tooltips(strToBool(options[CHART_TOOLTIPS]));
-    if(isDefined(options[CHART_LEGEND])) {
-        chart = chart.showLegend(strToBool(options[CHART_LEGEND]));
+    chart = chart.tooltips(strToBool(options.tooltips));
+    if(isDefined(options.legend)) {
+        chart = chart.showLegend(strToBool(options.legend));
     }
-    if(isDefined(options[CHART_CLIP])) {
-        chart = chart.clipEdge(strToBool(options[CHART_CLIP]));
+    if(isDefined(options.clip)) {
+        chart = chart.clipEdge(strToBool(options.clip));
     }
 
     /* Customize the axes */
-    if(options[CHART_X_FORMAT]) {
-        chart.xAxis.tickFormat(d3.format(options[CHART_X_FORMAT]));
-    } else if(options[CHART_X_DATE_FORMAT]) {
+    if(options.x_format) {
+        chart.xAxis.tickFormat(d3.format(options.x_format));
+    } else if(options.x_date_format) {
         chart.xAxis.tickFormat(function(x) {
-            return d3.time.format(options[CHART_X_DATE_FORMAT])(new Date(x));
+            return d3.time.format(options.x_date_format)(new Date(x));
         });
     }
 
-    if(options[CHART_Y_FORMAT]) {
-        chart.yAxis.tickFormat(d3.format(options[CHART_Y_FORMAT]));
-    } else if(options[CHART_Y_DATE_FORMAT]) {
+    if(options.y_format) {
+        chart.yAxis.tickFormat(d3.format(options.y_format));
+    } else if(options.y_date_format) {
         chart.yAxis.tickFormat(function(y) {
-            return d3.time.format(options[CHART_Y_DATE_FORMAT])(new Date(y));
+            return d3.time.format(options.y_date_format)(new Date(y));
         });
     }
 
     /* Customize axis ranges */
-    const x_start = options[CHART_X_START];
-    const x_end = options[CHART_X_END];
+    const x_start = options.x_start;
+    const x_end = options.x_end;
     if(isDefined(x_start) & isDefined(x_end)) {
         chart.forceX(parseFloat(x_start), parseFloat(x_end));
     }
 
-    const y_start = options[CHART_Y_START];
-    const y_end = options[CHART_Y_END];
+    const y_start = options.y_start;
+    const y_end = options.y_end;
     if(isDefined(y_start) & isDefined(y_end)) {
         chart.forceY(parseFloat(y_start), parseFloat(y_end));
     }
@@ -137,7 +139,7 @@ function customizeChart(chart, options) {
     /* Add the functions that extract data into the axes */
     return chart
         .x(function(item) {
-            if(options[CHART_X_DATE_FORMAT]) {
+            if(options.x_date_format) {
                 // If the values of the x axis are Unix timestamps, we have to
                 // modify them slightly for them to work
                 return parseInt(item[0].toString() + '000');
@@ -162,29 +164,30 @@ function renderChart(chart_node, id) {
     /* Extract the data and the options */
 
     var data = processData(extractData(chart_node.children('data')));
-    var options = {};
 
-    options[CHART_TYPE] = chart_node.attr(CHART_TYPE);
-    options[CHART_WIDTH] = chart_node.attr(CHART_WIDTH);
-    options[CHART_HEIGHT] = chart_node.attr(CHART_HEIGHT);
-    options[CHART_X_START] = chart_node.attr(CHART_X_START);
-    options[CHART_X_END] = chart_node.attr(CHART_X_END);
-    options[CHART_X_FORMAT] = chart_node.attr(CHART_X_FORMAT);
-    options[CHART_X_DATE_FORMAT] = chart_node.attr(CHART_X_DATE_FORMAT);
-    options[CHART_Y_START] = chart_node.attr(CHART_Y_START);
-    options[CHART_Y_END] = chart_node.attr(CHART_Y_END);
-    options[CHART_Y_FORMAT] = chart_node.attr(CHART_Y_FORMAT);
-    options[CHART_Y_DATE_FORMAT] = chart_node.attr(CHART_Y_DATE_FORMAT);
-    options[CHART_TOOLTIPS] = chart_node.attr(CHART_TOOLTIPS) || "false";
-    options[CHART_LEGEND] = chart_node.attr(CHART_LEGEND);
-    options[CHART_CLIP] = chart_node.attr(CHART_CLIP);
+    var options = {
+        type: chart_node.attr(option_attributes['type']),
+        width: chart_node.attr(option_attributes['width']),
+        height: chart_node.attr(option_attributes['height']),
+        x_start: chart_node.attr(option_attributes['x_start']),
+        x_end: chart_node.attr(option_attributes['x_end']),
+        x_format: chart_node.attr(option_attributes['x_format']),
+        x_date_format: chart_node.attr(option_attributes['x_date_format']),
+        y_start: chart_node.attr(option_attributes['y_start']),
+        y_end: chart_node.attr(option_attributes['y_end']),
+        y_format: chart_node.attr(option_attributes['y_format']),
+        y_date_format: chart_node.attr(option_attributes['y_date_format']),
+        tooltips: chart_node.attr(option_attributes['tooltips']) || "false",
+        legend: chart_node.attr(option_attributes['legend']),
+        clip: chart_node.attr(option_attributes['clip']),
+    };
 
     /* Decide what kind of chart we want to render, and in some cases manipulate
      * data to fit better */
 
     var chart_model;
 
-    const type = options[CHART_TYPE];
+    const type = options.type;
     if(type == 'line') {
         chart_model = nv.models.lineChart();
         data = multiSeriesData(data);
@@ -209,11 +212,11 @@ function renderChart(chart_node, id) {
             selector = d3.select('chart[' + NVD3_ID_ATTR_NAME + '="'+id+'"] svg')
                 .datum(data).transition().duration(500);
 
-            if(isDefined(options[CHART_WIDTH])) {
-                selector = selector.attr(CHART_WIDTH, options[CHART_WIDTH]);
+            if(isDefined(options.width)) {
+                selector = selector.attr('width', options.width);
             }
-            if(isDefined(options[CHART_HEIGHT])) {
-                selector = selector.attr(CHART_HEIGHT, options[CHART_HEIGHT]);
+            if(isDefined(options.height)) {
+                selector = selector.attr('height', options.height);
             }
             selector = selector.call(plot);
 
