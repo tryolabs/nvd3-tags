@@ -2,6 +2,8 @@
 
 const NVD3_ID_ATTR_NAME = 'nvd3_id';
 
+/** Map of option names to their attribute names.
+ */
 const option_attributes = {
     type: 'type',
     width: 'width',
