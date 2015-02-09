@@ -43,8 +43,8 @@ function strToBool(str) {
 /** Extract data from CSV.
  */
 function extractData(nodes) {
-    var separated = nodes.text().split('\n');
-    var cleaned = $.map(
+    const separated = nodes.text().split('\n');
+    const cleaned = $.map(
         $.grep(separated, function(str) {
             return str.trim() != "";
         }),
@@ -52,7 +52,7 @@ function extractData(nodes) {
             return str.trim();
         }
     );
-    var pairs = $.map(cleaned, function(str) {
+    const pairs = $.map(cleaned, function(str) {
         return [str.split(',')];
     });
     return $.grep(pairs, function(pair) {
@@ -73,9 +73,9 @@ function processData(data) {
 /** Process multi-series data into something NVD3 likes.
  */
 function multiSeriesData(data) {
-    var labels = data[0].slice(1);
-    var values = data.slice(1);
-    var output = $.map(labels, function(label,index) {
+    const labels = data[0].slice(1);
+    const values = data.slice(1);
+    const output = $.map(labels, function(label,index) {
         return {
             'key': label,
             'values': $.map(values, function(row, pos) {
@@ -167,7 +167,7 @@ function renderChart(chart_node, id) {
 
     var data = processData(extractData(chart_node.children('data')));
 
-    var options = {
+    const options = {
         type: chart_node.attr(option_attributes['type']),
         width: chart_node.attr(option_attributes['width']),
         height: chart_node.attr(option_attributes['height']),
