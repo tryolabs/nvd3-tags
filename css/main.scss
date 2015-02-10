@@ -5,6 +5,8 @@
 
 /* Variables */
 
+$column-count: 12;
+
 $navbar-height: 70px;
 $navbar-background: white;
 
@@ -20,6 +22,27 @@ $footer-background: white;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+/* A simple grid system */
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+@mixin row() {
+  @include clearfix;
+  width: 100%;
+}
+
+@mixin column($width) {
+  float: left;
+  width: 100% / $column-count * $width;
+}
+
 
 /* Navbar */
 
@@ -45,4 +68,18 @@ footer {
   text-align: center;
 
   background: $footer-background;
+}
+
+/* Demo */
+
+.example {
+  @include row();
+
+  pre {
+    @include column(4);
+  }
+
+  chart {
+    @include column(8);
+  }
 }
