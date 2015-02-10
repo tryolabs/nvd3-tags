@@ -11,7 +11,11 @@ $column-count: 12;
 
 $text-font: 'Source Sans Pro', sans-serif;
 
-$navbar-height: 70px;
+$link-color: #3498db;
+$visited-link-color: $link-color;
+$hover-link-color: #e74c3c;
+
+$navbar-height: 75px;
 $navbar-background: white;
 
 $footer-height: 110px;
@@ -53,13 +57,25 @@ $footer-background: white;
 nav {
   height: $navbar-height;
   line-height: $navbar-height;
+
   background: $footer-background;
+
+  margin-bottom: 25px;
 
   ul {
     list-style-type: none;
+    float: right;
+    padding-right: 50px;
 
     li {
       display: inline-block;
+      margin: 0 25px;
+
+      font-size: 1.2em;
+
+      &:hover {
+        border-bottom: 3px solid #2ecc71;
+      }
     }
   }
 }
@@ -83,6 +99,22 @@ body {
 main {
   width: 80%;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+
+  &:link {
+    color: $link-color;
+  }
+
+  &:visited {
+    color: $visited-link-color;
+  }
+
+  &:hover {
+    color: $hover-link-color;
+  }
 }
 
 /* Demo */
