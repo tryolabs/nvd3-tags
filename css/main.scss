@@ -2,3 +2,47 @@
 ---
 
 @charset "utf-8";
+
+/* Variables */
+
+$navbar-height: 70px;
+$navbar-background: white;
+
+$footer-height: 110px;
+$footer-background: white;
+
+/* Reset margins and paddings */
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+
+nav {
+  height: $navbar-height;
+  line-height: $navbar-height;
+  background: $footer-background;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+/* Footer */
+
+footer {
+  height: $footer-height;
+  line-height: $footer-height;
+  text-align: center;
+
+  background: $footer-background;
+}
