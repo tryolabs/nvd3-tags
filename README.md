@@ -14,6 +14,6 @@ A library for creating NVD3 charts from CSV data.
 * `y_format`: The numerical format of the Y axis.
 * `y_date_format`: The date format of the Y axis.
 * `tooltips`: Whether or not to show tooltips when mousing over the data. `true`
-  or `false.`
-* `legend`: Show legends.
+  or `false`.
+* `legend`: Show legends. `true` or `false`.
 * `clip`: Clip the edges when the chart runs over the width and height limits.
