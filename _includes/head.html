@@ -6,6 +6,17 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ site.description }}">
 
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- D3 -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.js"></script>
+  <!-- NVD3 -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.js">
+  </script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.css">
+  <!-- nvd3-tags -->
+  <script src="{{ "/js/nvd3-tags.js" | prepend: site.baseurl }}"></script>
+  <!-- Custom -->
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 </head>
