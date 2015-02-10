@@ -5,89 +5,85 @@ layout: default
 
 <h1>Line charts</h1>
 
-<chart type="line"
-       title="Simple line chart"
-       height="300">
-  <data>
-    X axis, Y axis
-    1,1
-    2,4
-    3,9
-    4,16
-    5,25
-    6,36
-  </data>
-</chart>
+{% capture line_chart %}{% include charts/line.html %}{% endcapture %}
 
-<chart type="line"
-       title="Line chart with formatting"
-       x-date-format="%x"
-       y-format="04d">
-  <data>
-    X Axis, Y Axis
-    1396530554328,145.2
-    1396530556789,120.0
-    1396530578473,333.1
-  </data>
-</chart>
+<div class="example">
+  <pre>
+    <code>
+{{ line_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/line.html %}
+</div>
 
-<chart type="line"
-       title="Line chart with multiple series"
-       x-date-format="%x">
-  <data>
-    Date, Company A sales,Company B sales,Company C sales
-    1396530554328,145.2,136.5,178
-    1396530556789,120.0,102.7,234
-    1396530578473,98.1,156.3,287.2
-  </data>
-</chart>
+{% capture line_formatting_chart %}{% include charts/line_formatting.html %}{% endcapture %}
+
+<div class="example">
+  <pre>
+    <code>
+{{ line_formatting_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/line_formatting.html %}
+</div>
+
+{% capture multi_line_chart %}{% include charts/multi_line.html %}{% endcapture %}
+
+<div class="example">
+  <pre>
+    <code>
+{{ multi_line_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/multi_line.html %}
+</div>
 
 <h1>Pie charts</h1>
 
-<chart type="pie"
-       title="Simple pie chart">
-  <data>
-    A,25
-    B,25
-    C,40
-    D,10
-  </data>
-</chart>
+{% capture pie_chart %}{% include charts/pie.html %}{% endcapture %}
 
-<chart type="pie"
-       title="Simple pie chart with flair"
-       tooltips="true"
-       legend="true">
-  <data>
-    A,25
-    B,25
-    C,40
-    D,10
-  </data>
-</chart>
+<div class="example">
+  <pre>
+    <code>
+{{ pie_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/pie.html %}
+</div>
+
+{% capture pie_flair_chart %}{% include charts/pie_flair.html %}{% endcapture %}
+
+<div class="example">
+  <pre>
+    <code>
+{{ pie_flair_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/pie_flair.html %}
+</div>
 
 <h1>Stacked area charts</h1>
 
-<chart type="stacked"
-       title="Simple stacked area chart">
-  <data>
-    Days,Company A sales,Company B sales
-    1,90,17
-    2,30,91
-    3,69,9
-    4,59,10
-    5,44,98
-  </data>
-</chart>
+{% capture stacked_chart %}{% include charts/stacked.html %}{% endcapture %}
+
+<div class="example">
+  <pre>
+    <code>
+{{ stacked_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/stacked.html %}
+</div>
 
 <h1>Bar charts</h1>
 
-<chart type="bar"
-       title="Simple bar chart">
-  <data>
-    A,25
-    B,25
-    C,40
-    D,10
-  </data>
-</chart>
+{% capture bar_chart %}{% include charts/bar.html %}{% endcapture %}
+
+<div class="example">
+  <pre>
+    <code>
+{{ bar_chart | xml_escape }}
+    </code>
+  </pre>
+  {% include charts/bar.html %}
+</div>
