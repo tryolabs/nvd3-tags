@@ -1,0 +1,8 @@
+# Site settings
+title: nvd3-tags
+description: >
+  A library for creating NVD3 charts from CSV data.
+baseurl: "/nvd3-tags"
+
+# Build settings
+markdown: kramdown
