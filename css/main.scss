@@ -70,16 +70,23 @@ footer {
   background: $footer-background;
 }
 
+/* Global style */
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
 /* Demo */
 
 .example {
   @include row();
 
   pre {
-    @include column(4);
+    @include column(6);
   }
 
   chart {
-    @include column(8);
+    @include column(6);
   }
 }
