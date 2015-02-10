@@ -6,3 +6,7 @@ baseurl: "/nvd3-tags"
 
 # Build settings
 markdown: kramdown
+
+# Links
+links:
+  tryo: http://tryolabs.com/
