@@ -200,6 +200,7 @@ function renderChart(chart_node, id) {
         data = multiSeriesData(data);
     } else if(type == 'bar') {
         chart_model = nv.models.discreteBarChart();
+        data = [["Values", 0]].concat(data);
         data = multiSeriesData(data);
     } else {
         console.log("Unknown chart type.");
