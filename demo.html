@@ -8,6 +8,9 @@ layout: default
 {% capture line_chart %}{% include charts/line.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A simple line chart.
+  </div>
   <pre class="xml">
     <code>
 {{ line_chart | xml_escape }}
@@ -19,6 +22,9 @@ layout: default
 {% capture line_formatting_chart %}{% include charts/line_formatting.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A line chart with axis formatting.
+  </div>
   <pre class="xml">
     <code>
 {{ line_formatting_chart | xml_escape }}
@@ -30,6 +36,9 @@ layout: default
 {% capture multi_line_chart %}{% include charts/multi_line.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A line chart with multiple series.
+  </div>
   <pre class="xml">
     <code>
 {{ multi_line_chart | xml_escape }}
@@ -43,6 +52,9 @@ layout: default
 {% capture pie_chart %}{% include charts/pie.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A plain pie chart.
+  </div>
   <pre class="xml">
     <code>
 {{ pie_chart | xml_escape }}
@@ -54,6 +66,9 @@ layout: default
 {% capture pie_flair_chart %}{% include charts/pie_flair.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A pie chart with extra flair.
+  </div>
   <pre class="xml">
     <code>
 {{ pie_flair_chart | xml_escape }}
@@ -67,6 +82,9 @@ layout: default
 {% capture stacked_chart %}{% include charts/stacked.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A stacked area chart.
+  </div>
   <pre class="xml">
     <code>
 {{ stacked_chart | xml_escape }}
@@ -80,6 +98,9 @@ layout: default
 {% capture bar_chart %}{% include charts/bar.html %}{% endcapture %}
 
 <div class="example">
+  <div class="desc">
+    A simple bar chart.
+  </div>
   <pre class="xml">
     <code>
 {{ bar_chart | xml_escape }}

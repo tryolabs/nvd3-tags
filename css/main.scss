@@ -51,7 +51,6 @@ $footer-background: white;
   width: 100% / $column-count * $width;
 }
 
-
 /* Navbar */
 
 nav {
@@ -121,6 +120,10 @@ a {
 
 .example {
   @include row();
+
+  .desc {
+    @include column(12);
+  }
 
   pre {
     @include column(6);
