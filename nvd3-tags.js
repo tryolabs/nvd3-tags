@@ -101,7 +101,7 @@ function customizeChart(chart, options) {
 
     /* Apply other general chart options */
     chart = chart.tooltips(strToBool(options.tooltips));
-    if(isDefined(options.legend)) {
+    if(isDefined(options.legend) & options.type != 'bar') {
         chart = chart.showLegend(strToBool(options.legend));
     }
     if(isDefined(options.clip)) {
@@ -180,7 +180,7 @@ function renderChart(chart_node, id) {
         y_format: chart_node.attr(option_attributes['y_format']),
         y_date_format: chart_node.attr(option_attributes['y_date_format']),
         tooltips: chart_node.attr(option_attributes['tooltips']) || "false",
-        legend: chart_node.attr(option_attributes['legend']),
+        legend: chart_node.attr(option_attributes['legend']) || "false",
         clip: chart_node.attr(option_attributes['clip']),
     };
 
