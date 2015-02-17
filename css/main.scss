@@ -123,6 +123,7 @@ a {
 
   .desc {
     @include column(12);
+    margin-top: 20px;
   }
 
   pre {
