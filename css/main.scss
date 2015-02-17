@@ -134,3 +134,28 @@ a {
     @include column(6);
   }
 }
+
+/* Home */
+
+.others {
+  ul {
+    @include row();
+    list-style-type: none;
+
+    li {
+      @include column(4);
+
+      h3 {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .desc {
+        margin: 0 25px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 25px;
+      }
+    }
+  }
+}
