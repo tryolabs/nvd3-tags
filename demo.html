@@ -109,4 +109,20 @@ layout: default
     </pre>
     {% include charts/bar.html %}
   </div>
+
+  <h1>Options</h1>
+
+  {% capture range_chart %}{% include charts/range.html %}{% endcapture %}
+
+  <div class="example">
+    <div class="desc">
+      Delimiting ranges.
+    </div>
+    <pre class="xml">
+      <code>
+{{ range_chart | xml_escape }}
+      </code>
+    </pre>
+    {% include charts/range.html %}
+  </div>
 </main>
