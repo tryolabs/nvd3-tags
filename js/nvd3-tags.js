@@ -124,18 +124,18 @@ function customizeChart(chart, options) {
             return d3.time.format(options.y_date_format)(new Date(y));
         });
     }
-
+    console.log(JSON.stringify(options));
     /* Customize axis ranges */
     const x_start = options.x_start;
     const x_end = options.x_end;
     if(isDefined(x_start) & isDefined(x_end)) {
-        chart.forceX(parseFloat(x_start), parseFloat(x_end));
+        chart = chart.forceX([parseFloat(x_start), parseFloat(x_end)]);
     }
 
     const y_start = options.y_start;
     const y_end = options.y_end;
     if(isDefined(y_start) & isDefined(y_end)) {
-        chart.forceY(parseFloat(y_start), parseFloat(y_end));
+        chart = chart.forceY([parseFloat(y_start), parseFloat(y_end)]);
     }
 
     /* Add the functions that extract data into the axes */
