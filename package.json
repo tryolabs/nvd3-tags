@@ -1,0 +1,22 @@
+{
+  "name": "nvd3-tags",
+  "version": "0.1",
+  "description": "Declarative NVD3 charts.",
+  "main": "lib/nvd3-tags.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tryolabs/nvd3-tags"
+  },
+  "keywords": [
+    "chart",
+    "plot",
+    "nvd3",
+    "d3"
+  ],
+  "author": "Fernando Borretti <eudoxiahp@gmail.com> (http://eudoxia.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tryolabs/nvd3-tags/issues"
+  },
+  "homepage": "http://tryolabs.github.io/nvd3-tags/",
+}
