@@ -21,6 +21,9 @@ $navbar-background: white;
 $footer-height: 110px;
 $footer-background: white;
 
+$mobile-size: 768px;
+$desktop-size: $mobile-size + 1;
+
 /* Reset margins and paddings */
 
 *, *:after, *:before {
@@ -49,6 +52,18 @@ $footer-background: white;
 @mixin column($width) {
   float: left;
   width: 100% / $column-count * $width;
+}
+
+@mixin on-desktop() {
+  @media (min-width: $mobile-size) {
+    @content;
+  }
+}
+
+@mixin on-mobile() {
+  @media (max-width: $mobile-size) {
+    @content;
+  }
 }
 
 /* Global style */
@@ -123,20 +138,22 @@ main {
   }
 }
 
-.example {
-  @include row();
+@include on-desktop() {
+  .example {
+    @include row();
 
-  .desc {
-    @include column(12);
-    margin-top: 20px;
-  }
+    .desc {
+      @include column(12);
+      margin-top: 20px;
+    }
 
-  pre {
-    @include column(6);
-  }
+    pre {
+      @include column(6);
+    }
 
-  chart {
-    @include column(6);
+    chart {
+      @include column(6);
+    }
   }
 }
 
