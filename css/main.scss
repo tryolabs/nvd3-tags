@@ -181,11 +181,15 @@ header {
 
 .others {
   ul {
-    @include row();
+    @include on-desktop() {
+      @include row();
+    }
     list-style-type: none;
 
     li {
-      @include column(4);
+      @include on-desktop() {
+        @include column(4);
+      }
 
       h3 {
         text-align: center;
