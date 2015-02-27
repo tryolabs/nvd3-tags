@@ -4,6 +4,36 @@ layout: default
 ---
 
 <main>
+  <h1>Chart Options</h1>
+
+  <ul>
+    <li>
+      <code>type</code>: The type of chart. Options: <code>line</code>, <code>pie</code>, <code>stacked</code>, <code>bar</code>.</li>
+    <li>
+      <code>title</code>: The chart's title text.</li>
+    <li>
+      <code>width</code>, <code>height</code>: The chart's dimensions.</li>
+    <li>
+      <code>x_start</code>, <code>x_end</code>: The range of the X axis.</li>
+    <li>
+      <code>x_format</code>: The numerical format of the X axis.</li>
+    <li>
+      <code>x_date_format</code>: The date format of the X axis.</li>
+    <li>
+      <code>y_start</code>, <code>y_end</code>: The range of the Y axis.</li>
+    <li>
+      <code>y_format</code>: The numerical format of the Y axis.</li>
+    <li>
+      <code>y_date_format</code>: The date format of the Y axis.</li>
+    <li>
+      <code>tooltips</code>: Whether or not to show tooltips when mousing over the data. <code>true</code>
+      or <code>false</code>.</li>
+    <li>
+      <code>legend</code>: Show legends. <code>true</code> or <code>false</code>.</li>
+    <li>
+      <code>clip</code>: Clip the edges when the chart runs over the width and height limits.</li>
+  </ul>
+
   <h1>Line charts</h1>
 
   {% capture line_chart %}{% include charts/line.html %}{% endcapture %}
