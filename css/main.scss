@@ -117,6 +117,12 @@ footer {
 
 /* Demo */
 
+main {
+  ul {
+    margin: 20px 30px;
+  }
+}
+
 .example {
   @include row();
 
