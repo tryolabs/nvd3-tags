@@ -143,9 +143,7 @@ var nvd3_tags = (function() {
         return chart
             .x(function(item) {
                 if(options.x_date_format) {
-                    // If the values of the x axis are Unix timestamps, we have to
-                    // modify them slightly for them to work
-                    return parseInt(item[0].toString() + '000');
+                    return parseInt(item[0].toString());
                 } else {
                     return item[0];
                 }
